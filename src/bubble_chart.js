@@ -75,8 +75,7 @@ function bubbleChart() {
   // @v4 scales now have a flattened naming scheme
   var fillColor = d3.scaleOrdinal()
     .domain(['low', 'medium', 'high'])
-    .range(['#d84b2a', '#beccae', '#7aa25c']);
-
+    .range(['#3d7bb9', '#557b99', '#db8526']);
 
   /*
    * This data manipulation function takes the raw data from
@@ -166,6 +165,12 @@ function bubbleChart() {
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
+
+      bubbles.append("text")
+        .attr("clip-path", function(d) { return "test1"; })
+      // .selectAll("tspan")
+      // .data(function(d) { return d.class.split(/(?=[A-Z][^A-Z])/g); })
+
 
     // @v4 Merge the original empty selection and the enter selection
     bubbles = bubbles.merge(bubblesE);
@@ -273,10 +278,10 @@ function bubbleChart() {
     // change outline to indicate hover state.
     d3.select(this).attr('stroke', 'black');
 
-    var content = '<span class="name">Title: </span><span class="value">' +
+    var content = '<span class="name">Topic: </span><span class="value">' +
                   d.name +
                   '</span><br/>' +
-                  '<span class="name">Amount: </span><span class="value">$' +
+                  '<span class="name">Count: </span><span class="value">' +
                   addCommas(d.value) +
                   '</span><br/>' +
                   '<span class="name">Year: </span><span class="value">' +
